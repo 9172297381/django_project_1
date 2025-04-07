@@ -1,0 +1,354 @@
+<style>
+    .nav-tabs .nav-link {
+    font-size: 1rem;
+    border: none;
+    padding: 10px 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-tabs .nav-link.active {
+    border-bottom: 3px solid #000;
+    color: black !important;
+}
+
+.img-fluid {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out;
+}
+
+.img-fluid:hover {
+    transform: scale(1.1);
+}
+.card-carousel-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .card-carousel {
+            display: flex;
+            gap: 15px;
+            animation: scrollLeft 15s linear infinite;
+            width: max-content;
+        }
+
+        @keyframes scrollLeft {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        .card-carousel:hover {
+            animation-play-state: paused;
+        }
+
+        .card {
+            flex: 0 0 auto;
+            width: 320px;
+            text-align: center;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            background: white;
+        }
+
+        .card img {
+            width: 320px;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Media Queries */
+        @media (max-width: 1024px) {
+            .card {
+                width: 200px;
+            }
+            .card img {
+                height: 180px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                width: 180px;
+            }
+            .card img {
+                height: 160px;
+            }
+        }
+
+        @media (max-width: 430px) {
+            .card {
+                max-width: 320px;
+            }
+            .card img {
+                height: 350px;
+            }
+        }
+</style>
+{% extends "base.html" %}
+{% load static %}
+{% block 'main' %}
+
+
+<!-- Logout success message -->
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success alert-dismissible fade show text-center" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endif %}
+
+
+
+<!--<h1>Welcome<h1>-->
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <div id="carouselExampleIndicators" class="carousel slide mb-4" data-bs-ride="carousel">
+            
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'images/corosalflip.webp' %}" class="d-block w-100" alt="Slide 1" height="500px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/corosal2.webp' %}" class="d-block w-100" alt="Slide 2" height="500px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/corosal3.webp' %}" class="d-block w-100" alt="Slide 3" height="500px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/corosal4.webp' %}" class="d-block w-100" alt="Slide 4" height="500px">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'images/corosal5.webp' %}" class="d-block w-100" alt="Slide 4" height="500px">
+                </div>
+            </div>
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+            
+        </div>
+    </div>
+</div>
+{% load static %}
+<div class="container my-5">
+    <!-- Shop by Category -->
+    <h2 class="fw-bold">Shop by Category</h2>
+    <ul class="nav nav-tabs border-0" id="categoryTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active fw-bold" id="men-tab" data-bs-toggle="tab" data-bs-target="#men" type="button" role="tab">MEN</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold text-muted" id="women-tab" data-bs-toggle="tab" data-bs-target="#women" type="button" role="tab">WOMEN</button>
+        </li>
+        <!-- <li class="nav-item" role="presentation">
+            <button class="nav-link fw-bold text-muted" id="kids-tab" data-bs-toggle="tab" data-bs-target="#kids" type="button" role="tab">KIDS</button>
+        </li>
+    </ul> -->
+    
+    <div class="tab-content mt-4" id="categoryTabContent">
+        <!-- Men Category -->
+        <div class="tab-pane fade show active" id="men" role="tabpanel">
+            <div class="row text-center">
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/eyeglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Eyeglasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'sun_glass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/sun.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Sunglasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/computer.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Computer Glasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/reading.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Reading Glasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'contact_lens' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/contact.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Contact Lenses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'accessories' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/access.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Accessories</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Women Category -->
+        <div class="tab-pane fade" id="women" role="tabpanel">
+            <div class="row text-center">
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/women_eyeglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Eyeglasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'sun_glass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/women_sunglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Sunglasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/women_computer_glasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Computer Glasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/women_reading_glasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Reading Glasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/women_contact_lenses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Contact Lenses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'accessories' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/women_accessories.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Accessories</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Kids Category
+        <div class="tab-pane fade" id="kids" role="tabpanel">
+            <div class="row text-center">
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/kids_eyeglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Eyeglasses</p>
+                    </a>
+                </div>
+                <div class="col-md-2 col-6">
+                    <a href="{% url 'sun_glass' %}" class="text-decoration-none text-dark">
+                        <img src="{% static 'images/kids_sunglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
+                        <p class="fw-bold mt-2">Sunglasses</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container my-5">
+    <div class="row text-center align-items-center">
+        <!-- Eyewear Sold -->
+        <div class="col-md-4">
+            <h4 class="fw-bold">1 Cr+</h4>
+            <p class="text-muted">Eyewear Sold</p>
+        </div>
+
+        
+        <!-- Stores -->
+        <div class="col-md-4">
+            <h4 class="fw-bold">850+</h4>
+            <p class="text-muted">Stores</p>
+        </div>
+
+       
+        <!-- Google Rating -->
+        <div class="col-md-4">
+            <h4 class="fw-bold">4.9/5 <i class="fas fa-star text-warning"></i></h4>
+            <p class="text-muted">On Google</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="container mt-4">
+    <h3 class="text-center">Curated Collections</h3>
+    <div class="card-carousel-container">
+        <div class="card-carousel">
+            <div class="card">
+                <img src="{% static 'images/card1.webp' %}" alt="Computer Glasses">
+                <div class="card-body"><h5>Computer Glasses</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card2.webp' %}" alt="Whiplash">
+                <div class="card-body"><h5>Whiplash</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card3.webp' %}" alt="Glow Up">
+                <div class="card-body"><h5>Glow Up</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card11.webp' %}" alt="Swimming Glasses">
+                <div class="card-body"><h5>Swimming Glasses</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card5.webp' %}" alt="Deadpool & Wolverine">
+                <div class="card-body"><h5>Deadpool & Wolverine</h5></div>
+            </div>
+            
+            <div class="card">
+                <img src="{% static 'images/card6.webp' %}" alt="Computer Glasses">
+                <div class="card-body"><h5>Computer Glasses</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card7.webp' %}" alt="Whiplash">
+                <div class="card-body"><h5>Whiplash</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card8.webp' %}" alt="Glow Up">
+                <div class="card-body"><h5>Glow Up</h5></div>
+            </div>
+            <div class="card">
+                <img src="{% static 'images/card4.jpg' %}" alt="Computer Glasses">
+                <div class="card-body"><h5>Computer Glasses</h5></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  {% endblock 'main' %}

@@ -1,0 +1,189 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Petshop</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<style>
+  .card-img-top {
+    height: 200px; /* Set a common height */
+    object-fit: cover; /* Maintain aspect ratio and crop if needed */
+    width: 100%; /* Ensure the image spans the card width */
+  }
+
+
+  .card-text {
+    min-height: 60px; /* Ensures consistent height for descriptions */
+  }
+  .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  .rating-badge {
+    font-size: 1rem;
+  }
+
+  <style>
+    /* General Styles */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container-fluid {
+        padding: 0;
+    }
+
+    .carousel-item img {
+        height: 500px;
+        object-fit: cover;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .carousel-indicators button {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .carousel-indicators .active {
+        background-color: #000;
+    }
+
+    /* Category Section */
+    .list-group-item {
+        border: none;
+        padding: 10px 15px;
+        background-color: transparent;
+    }
+
+    .list-group-item a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+    }
+
+    .list-group-item a:hover {
+        color: #007bff;
+    }
+
+    /* Product Section */
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-img-top {
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        font-size: 0.9rem;
+        color: #666;
+        flex-grow: 1;
+    }
+
+    .rating-badge {
+        display: inline-flex;
+        align-items: center;
+        background-color: #ffc107;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        color: #fff;
+    }
+
+    .rating-badge .star {
+        margin-left: 5px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        padding: 10px;
+        font-size: 0.9rem;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .carousel-item img {
+            height: 300px;
+        }
+
+        .card {
+            width: 100%;
+        }
+
+        .card-img-top {
+            height: 150px;
+        }
+
+        .col-md-3 {
+            display: none;
+        }
+
+        .col-md-9 {
+            width: 100%;
+        }
+    }
+</style>
+
+</head>
+
+<body>
+    <!-- Include navbar -->
+    {% include "navbar.html" %}
+    
+  
+    {% block 'title' %}
+
+    {% endblock 'title' %}
+
+    {% block 'main' %}
+
+    {% endblock 'main' %}
+
+    {% include "footer.html" %}
+
+    <!-- Commented footer -->
+    {% comment %} {% include "footer.html" %} {% endcomment %}
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

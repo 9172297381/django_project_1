@@ -1,0 +1,581 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'main' %}
+
+<!-- Custom Styling -->
+<style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        color: #333;
+        background: #f4f7f6;
+    }
+
+    .hero-section {
+        background: url("{% static 'images/about-bg.jpg' %}") no-repeat center center/cover;
+        color: white;
+        text-align: center;
+        padding: 160px 20px;
+        position: relative;
+        overflow: hidden;
+    }
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+    }
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+    .hero-content p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: auto;
+        opacity: 0.9;
+    }
+
+    .section {
+        padding: 100px 0;
+        text-align: center;
+    }
+    .section-title {
+        font-size: 2.8rem;
+        font-weight: bold;
+        margin-bottom: 40px;
+        position: relative;
+    }
+    .section-title::after {
+        content: "";
+        display: block;
+        width: 100px;
+        height: 4px;
+        background: #007bff;
+        margin: 10px auto;
+    }
+
+    .about-content {
+        text-align: left;
+    }
+    .about-content ul {
+        list-style: none;
+        padding: 0;
+    }
+    .about-content ul li {
+        font-size: 1.2rem;
+        padding: 8px 0;
+        display: flex;
+        align-items: center;
+    }
+    .about-content ul li i {
+        color: #007bff;
+        margin-right: 10px;
+    }
+
+    .team-section img {
+        border-radius: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .team-section img:hover {
+        transform: scale(1.05);
+    }
+
+    .contact-section {
+        background: #007bff;
+        color: white;
+        padding: 80px 0;
+    }
+    .contact-section h2 {
+        color: white;
+    }
+
+    .team-card {
+    width: 400px; /* Bigger card */
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    background: white;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 20px auto;
+    transition: transform 0.3s ease-in-out;
+}
+
+.team-card:hover {
+    transform: scale(1.05);
+}
+
+.team-card img {
+    width: 250px;  /* Ensures equal size */
+    height: 250px; /* Ensures equal size */
+    border-radius: 50%;
+    object-fit: cover; /* Prevents cropping issues */
+    border: 8px solid transparent;
+    background: linear-gradient(45deg, red, yellow, green, blue);
+    padding: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: 0 auto;
+}
+
+.team-card h4 {
+    font-size: 1.8rem;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.team-card p {
+    font-size: 1.2rem;
+    color: #555;
+}
+
+.team-card img {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top 250%; /* Moves the image slightly downward */
+    border: 8px solid transparent;
+    background: linear-gradient(45deg, red, yellow, green, blue);
+    padding: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    display: block;
+    margin: 0 auto;
+}
+ 
+.team-card p {
+    font-weight: bold; /* Makes text bold */
+    font-size: 1.1rem; /* Adjust size if needed */
+    color: #333; /* Ensures readability */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: #fff; /* Premium white text */
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 50px;
+    max-width: 800px;
+    margin: auto;
+}
+
+/* Image Hover Effect */
+.container .row .col-md-6 img {
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    border-radius: 10px;
+}
+
+.container .row .col-md-6 img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Premium Text Styling */
+.about-content p {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    line-height: 1.8;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Title Styling */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.section-title::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: #ff6600;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Section Styling */
+.section {
+    padding: 60px 0;
+}
+
+/* Premium Section Title */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    text-align: center;
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.section-title::after {
+    content: '';
+    width: 100px;
+    height: 4px;
+    background: #ff6600;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Why Choose Us List */
+.about-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.about-content ul li {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease-in-out;
+}
+
+.about-content ul li i {
+    color: #ff6600;
+    font-size: 1.5rem;
+    margin-right: 10px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.about-content ul li:hover {
+    color: #ff6600;
+    transform: translateX(5px);
+}
+
+.about-content ul li:hover i {
+    transform: scale(1.2);
+}
+
+/* Image Hover Effect */
+.container .row .col-md-6 img {
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    border-radius: 10px;
+}
+
+.container .row .col-md-6 img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Section Styling */
+.section {
+    padding: 60px 0;
+}
+
+/* Section Title */
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 100px;
+    height: 4px;
+    background: #ff6600;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Review Cards */
+.review-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-align: center;
+    margin: 15px;
+    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.review-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Review Text */
+.review-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+/* Review Footer */
+.review-footer {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ff6600;
+}
+
+/* Contact Section */
+.contact-section {
+    background: linear-gradient(135deg, skyblue);
+    color: white;
+    padding: 60px 0;
+    text-align: center;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    width: 80px;
+    height: 4px;
+    background: white;
+    display: block;
+    margin: 10px auto 0;
+    border-radius: 5px;
+}
+
+/* Contact Card */
+.contact-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 30px;
+    border-radius: 12px;
+    display: inline-block;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    width: 60%;
+    max-width: 600px;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Contact Icons & Links */
+.contact-card p {
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+}
+
+.contact-card i {
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
+.contact-card a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-card a:hover {
+    text-decoration: underline;
+}
+
+/* Hero Section */
+.hero-section {
+    position: relative;
+    background: url("{% static 'images/coverpage.webp' %}") no-repeat center center/cover;
+    height: 60vh;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding-bottom: 50px; /* Adjusts the text position */
+}
+
+/* Dark Overlay */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+/* Hero Content */
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+/* Heading */
+.hero-content h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* Subtext */
+.hero-content p {
+    font-size: 1.5rem;
+    font-weight: 300;
+    opacity: 0.9;
+    letter-spacing: 1px;
+}
+
+
+
+</style>
+
+<!-- Hero Section -->
+<div class="hero-section">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <h1>About Lensora</h1>
+        <p>Your Trusted Eyewear Destination – Quality, Style & Affordability</p>
+    </div>
+</div>
+
+<!-- Our Vision -->
+<div class="container section">
+    <h2 class="section-title">Our Vision</h2>
+    <div class="row align-items-center">
+        <div class="col-md-6">
+            <img src="{% static 'images/vision_pic.jpg' %}" class="img-fluid rounded" alt="Vision">
+        </div>
+        <div class="col-md-6 about-content">
+            <p>At Lensora, we believe eyewear is more than just a necessity—it's an expression of personality. Our goal is to make stylish and high-quality eyewear accessible to everyone.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- Why Choose Us -->
+<div class="container section">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <div class="row">
+        <div class="col-md-6 about-content">
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Premium quality eyewear at affordable prices</li>
+                <li><i class="fas fa-check-circle"></i> Wide range of styles and brands</li>
+                <li><i class="fas fa-check-circle"></i> Fast and reliable delivery</li>
+                <li><i class="fas fa-check-circle"></i> Excellent customer service</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <img src="{% static 'images/services.jpg' %}" class="img-fluid rounded" alt="Why Choose Us">
+        </div>
+    </div>
+</div>
+
+<!-- Our Vision -->
+<div class="container section team-section">
+    <h2 class="section-title">Meet Our Team</h2>
+    <div class="row justify-content-center">
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="team-card">
+                <img src="{% static 'images/team_lead.jpg' %}" alt="Zara Anderson">
+                <h4>Zara Anderson</h4>
+                <p>Founder & CEO</p>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="team-card">
+                <img src="{% static 'images/ajitpandey.jpg' %}" alt="Jane Smith">
+                <h4>Ajit Pandey</h4>
+                <p>Head of Design</p>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="team-card">
+                <img src="{% static 'images/team_member.avif' %}" alt="Michael Lee">
+                <h4>Kiara Harrison</h4>
+                <p>Marketing Director</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Customer Reviews -->
+<div class="container section">
+    <h2 class="section-title">What Our Customers Say</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="review-card">
+                <p class="review-text">"Best eyewear store ever! Great quality and fast delivery!"</p>
+                <footer class="review-footer">- Emily R.</footer>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="review-card">
+                <p class="review-text">"Amazing customer service! Highly recommended."</p>
+                <footer class="review-footer">- James P.</footer>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="review-card">
+                <p class="review-text">"Stylish and affordable eyewear. Will buy again!"</p>
+                <footer class="review-footer">- Sarah W.</footer>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Contact Us -->
+<div class="contact-section">
+    <div class="container">
+        <h2 class="section-title">Contact Us</h2>
+        <div class="contact-card">
+            <p><i class="fas fa-envelope"></i> Email: <a href="mailto:dorababuneerudu78@gmail.com">dorababuneerudu78@gmail.com</a></p>
+            <p><i class="fas fa-phone"></i> Phone: <a href="tel:+919172297381">+91 91722 97381</a></p>
+            <p><i class="fas fa-map-marker-alt"></i> Address: Wagale Estate, Thane, Eyewear City, Mumbai</p>
+        </div>
+    </div>
+</div>
+
+
+{% endblock 'main' %}

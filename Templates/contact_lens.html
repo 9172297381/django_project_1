@@ -1,0 +1,186 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'main' %}
+
+<style>
+    /* General Styling */
+    body {
+        background-color: #f8f9fa;
+    }
+
+    /* Title Section */
+    .title-section {
+        text-align: center;
+        margin: 20px 0;
+    }
+
+    .title-section h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+    }
+
+    .title-section h6 {
+        font-size: 1rem;
+        font-weight: normal;
+        color: #666;
+    }
+
+    /* Product Section */
+    .container {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    /* Product Grid */
+    .product-grid {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    /* Product Card */
+    .product-card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease-in-out;
+        width: 320px;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .product-card img {
+        border-bottom: 1px solid #ddd;
+        max-height: 200px;
+        object-fit: cover;
+    }
+
+    /* Bestseller Badge */
+    .bestseller-badge {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #17c1a3;
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 5px;
+    }
+
+    /* Wishlist Icon */
+    .wishlist-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #ff5a5f;
+        font-size: 20px;
+        cursor: pointer;
+    }
+
+    /* Product Section */
+/* Align product grid to extreme left */
+.container {
+    max-width: 100%;
+    padding-left: 20px; /* Adjust as needed */
+    padding-right: 20px;
+}
+
+
+.product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start; /* Align to the left */
+    align-items: flex-start;
+    gap: 10px; /* Reduce the gap */
+    margin-left: 0;
+    padding-left: 0;
+    width: 100%;
+}
+
+.card-body {
+    padding: 10px; /* Reduce padding inside the card */
+}
+
+.card-text.text-muted {
+    margin-bottom: 1px; /* Reduce space below 'Size' */
+    font-size: 0.9rem;
+}
+
+.card-text.text-dark {
+    margin-top: 1px; /* Reduce space above 'Price' */
+    margin-bottom: 2px;
+    font-size: 1rem;
+}
+
+.card-text.text-muted {
+    margin-bottom: 2px; /* Reduce space below "Size" */
+    font-size: 0.9rem;
+}
+
+.card-text.text-dark.fw-bold {
+    margin-top: -30px; /* Reduce space above "Price" */
+    font-size: 1rem;
+}
+
+.card-text.text-dark.fw-bold {
+    margin-bottom: -20px; /* Reduce space below price */
+    font-size: 1rem;
+}
+
+.small.text-secondary {
+    margin-top: 2px; /* Reduce space above "Inclusive of all taxes" */
+    font-size: 0.85rem;
+}
+
+
+</style>
+
+<!-- Hero Section -->
+<div class="carousel-inner">
+    <div class="carousel-item active">
+        <img src="{% static 'images/corosalflip.webp' %}" class="d-block w-100" alt="Slide 1" height="500px">
+    </div>
+</div>
+
+<!-- Title Section -->
+<div class="title-section">
+    <h1>Sunglasses</h1>
+    <h6>Eyeglasses that blend style and comfort for every face.</h6>
+</div>
+
+<!-- Main Content Section -->
+<div class="container">
+    <div class="product-grid">
+        {% for prod in products %}
+        <div class="card product-card shadow-sm border-0 rounded-3">
+            <div class="position-relative">
+                <span class="bestseller-badge">BESTSELLER</span>
+                <img src="{{ prod.productImage.url }}" class="card-img-top p-2" alt="{{ prod.productName }}">
+                <span class="wishlist-icon">
+                    <i class="bi bi-heart"></i>
+                </span>
+            </div>
+            <div class="card-body text-center">
+                <h6 class="card-title fw-bold">{{ prod.productName }}</h6>
+                <p class="card-text text-muted mb-1">Size: Medium</p>
+                <p class="card-text text-dark fw-bold">$ {{ prod.productPrice }}/- 
+                    <span class="text-success">(60% Off)</span>
+                </p>
+                <p class="small text-secondary">Inclusive of all taxes</p>
+                <a href="{% url 'viewproduct' prod.id %}" class="btn btn-dark w-100">View Product</a>
+
+                {% if user.is_authenticated and user.is_superuser %}
+                <a href="{% url 'updateproduct' prod.id %}" class="btn btn-dark w-100 mt-2">Update</a>
+                <a href="{% url 'deleteproduct' prod.id %}" class="btn btn-dark w-100 mt-2">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock 'main' %}

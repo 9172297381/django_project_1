@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'main' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .contact-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        .contact-card h2 {
+            font-weight: bold;
+        }
+        .contact-card a {
+            text-decoration: none;
+            color: #17a2b8;
+            font-weight: bold;
+        }
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+        .icon {
+            color: #17a2b8;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav class="mt-4">
+            <a href="#" class="text-muted">Home</a> &gt; <span class="text-dark">Contact Us</span>
+        </nav>
+        
+        <div class="contact-card">
+            <h2>Contact Us</h2>
+            <hr>
+            <p><i class="fas fa-phone-alt icon"></i> <a href="tel:18002660123">1800-266-0123</a></p>
+            <p><i class="fas fa-clock icon"></i> 10AM - 10PM Mon - Sun</p>
+            <p><i class="fab fa-whatsapp icon"></i> Click <a href="https://wa.me/18002660123">Here</a> to chat with us on WhatsApp</p>
+            <p><i class="fas fa-envelope icon"></i> <a href="mailto:cs@lensora.com">cs@titaneyeplus.com</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+  {% endblock 'main' %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'main' %}
+<div class="container">
+    <div class="conatiner bg-primary p-2 text-white text-center shadow">Registration Form </div>
+</div>
+
+<div class="container my-3 shadow w-50 ">
+<form action="" method="POST" encype="multipart/form-data">
+{% csrf_token %}
+{{form.as_p}}
+
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div style="color: red;">{{error}}</div>
+        {% endfor %}
+    {% endfor %}
+<input type="submit" value="Submit">
+</div>
+{% endblock 'main' %}

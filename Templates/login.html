@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'main' %}
+<div class="login-page">
+    <div class="login-container">
+        <h2>Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {% if messages %}
+
+            {% for message in messages%}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+
+
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit" class="login-btn">Login</button>
+            {% if error_message %}
+                <p style="color: red;">{{ error_message }}</p>
+            {% endif %}
+        </form>
+        <div class="register-link">
+            <p>Don't have an account? <a href="{% url 'forget-password' %}">Forget Password</a></p>
+            <p>Don't have an account? <a href="{% url 'register' %}">Register here</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+    .login-page {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background: url('{% static "images/background.jpg" %}') no-repeat center center/cover;
+        padding: 20px;
+    }
+    .login-container {
+        background: rgba(255, 255, 255, 0.9);
+        padding: 60px;
+        border-radius: 15px;
+        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+        width: 500px; /* Increased width */
+        text-align: center;
+        backdrop-filter: blur(10px); /* Background blur effect */
+    }
+    .login-container h2 {
+        margin-bottom: 30px;
+        color: #0077b6;
+        font-weight: 700;
+        font-size: 26px;
+    }
+    .input-group {
+        margin-bottom: 25px;
+        text-align: left;
+    }
+    .input-group label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+    }
+    .input-group input {
+        width: 100%;
+        padding: 14px;
+        margin-top: 6px;
+        border: 1px solid #bbb;
+        border-radius: 10px;
+        font-size: 16px;
+        transition: 0.3s ease;
+    }
+    .input-group input:focus {
+        border-color: #0077b6;
+        box-shadow: 0px 0px 5px rgba(0, 119, 182, 0.5);
+        outline: none;
+    }
+    .login-btn {
+        background: #0077b6;
+        color: #fff;
+        border: none;
+        padding: 14px;
+        width: 100%;
+        border-radius: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        font-weight: 700;
+        transition: 0.3s ease;
+    }
+    .login-btn:hover {
+        background: #005f87;
+        transform: scale(1.05);
+    }
+    .register-link {
+        margin-top: 20px;
+        font-size: 16px;
+    }
+    .register-link a {
+        color: #0077b6;
+        text-decoration: none;
+        font-weight: 700;
+    }
+    .register-link a:hover {
+        text-decoration: underline;
+    }
+</style>
+{% endblock 'main' %}

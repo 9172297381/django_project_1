@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block 'main' %}
+
+<style>
+    .order-img {
+        width: 120px;
+        height: 120px;
+        object-fit: contain;
+        border: 1px solid #ddd;
+        padding: 5px;
+        background-color: #fff;
+        transition: transform 0.2s;
+    }
+    .order-img:hover {
+        transform: scale(1.05);
+    }
+</style>
+
+<div class="container-fluid py-4">
+    <h1 class="mb-4 text-center fw-bold">Your Orders</h1>
+    {% if orders %}
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover shadow-sm">
+                        <thead class="bg-dark text-white text-center">
+                            <tr>
+                                <th style="width: 10%;">Order ID</th>
+                                <th style="width: 30%;">Items</th>
+                                <th style="width: 10%;">Quantity</th>
+                                <th style="width: 10%;">Total Amount</th>
+                                <th style="width: 10%;">Payment Status</th>
+                                <th style="width: 15%;">Order Status</th>
+                                <th style="width: 15%;">Order Date</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                {% for item in order.order_items.all %}
+                                    <tr>
+                                        {% if forloop.first %}
+                                            <td class="align-middle text-center fw-bold" rowspan="{{ order.order_items.count }}">{{ order.order_id }}</td>
+                                        {% endif %}
+                                        <td class="align-middle d-flex align-items-center">
+                                            <a href="{% url 'view_product' item.product.id %}">
+                                                {% if item.product.productImage %}
+                                                    <img src="{{ item.product.productImage.url }}" alt="{{ item.product.productName }}" class="img-thumbnail me-3 order-img">
+                                                {% else %}
+                                                    <img src="{% static 'images/no-image.png' %}" alt="No Image" class="img-thumbnail me-3 order-img">
+                                                {% endif %}
+                                            </a>
+                                            <strong>{{ item.product.productName }}</strong>
+                                        </td>
+                                        <td class="align-middle text-center fw-bold">{{ item.quantity }}</td>
+                                        {% if forloop.first %}
+                                            <td class="align-middle text-success text-center fw-bold" rowspan="{{ order.order_items.count }}">${{ order.total_amount }}</td>
+                                            <td class="align-middle text-center" rowspan="{{ order.order_items.count }}">
+                                                {% if order.payment_status == "Completed" %}
+                                                    <span class="badge bg-success p-2">{{ order.payment_status }}</span>
+                                                {% else %}
+                                                    <span class="badge bg-danger p-2">{{ order.payment_status }}</span>
+                                                {% endif %}
+                                            </td>
+                                            <td class="align-middle text-center" rowspan="{{ order.order_items.count }}">{{ order.order_status }}</td>
+                                            <td class="align-middle text-center" rowspan="{{ order.order_items.count }}">{{ order.created_at|date:"M d, Y H:i" }}</td>
+                                            
+                                        {% endif %}
+                                    </tr>
+                                {% endfor %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <div class="alert alert-info text-center" role="alert">
+            <h4>You have no orders yet.</h4>
+            <p>Explore our collections and place your first order!</p>
+        </div>
+    {% endif %}
+</div>
+
+{% endblock 'main' %}

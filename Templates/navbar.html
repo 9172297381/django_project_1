@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lensora Navbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <style>
+        .navbar-top {
+            background: linear-gradient(45deg, #00A9E0, #008037);
+            padding: 10px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .navbar-main {
+            background: #ffffff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 10px 0;
+        }
+        .navbar-brand {
+            font-size: 3rem;
+            font-weight: bold;
+            color: white !important;
+            transition: color 0.3s;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-decoration: double;
+        
+        }
+        .navbar-brand:hover {
+            color: #FFD700 !important;
+        }
+        .nav-link, .dropdown-item {
+            color: black !important;
+            font-weight: 500;
+            transition: color 0.3s, transform 0.2s;
+            margin: 0 10px;
+        }
+        .nav-link:hover, .dropdown-item:hover {
+            color: #008037 !important;
+            transform: scale(1.05);
+        }
+        .icon-link {
+            font-size: 1.7rem;
+            color: white;
+            margin-left: 15px;
+            transition: transform 0.3s;
+        }
+        .icon-link:hover {
+            color: #FFD700;
+            transform: rotate(10deg);
+        }
+        .form-control {
+            border-radius: 20px;
+            transition: box-shadow 0.3s;
+        }
+        .form-control:focus {
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+            border-color: #FFD700;
+        }
+        
+        /* Cart Icon */
+        .cart-icon {
+            font-size: 1.8rem;
+            color: white;
+            margin-left: 15px;
+            transition: color 0.3s, transform 0.2s;
+        }
+        .cart-icon:hover {
+            color: #FFD700;
+            transform: scale(1.1);
+        }
+
+        /* Responsive Fixes */
+        @media (max-width: 991px) {
+            .navbar-nav {
+                text-align: center;
+            }
+            .nav-item {
+                margin-bottom: 5px;
+            }
+        }
+        /* Account Dropdown Fixes */
+.account-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.account-dropdown .dropdown-toggle {
+    cursor: pointer;
+    font-size: 1.7rem;
+    color: white;
+    margin-left: 15px;
+    transition: transform 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+/* Remove default Bootstrap dropdown arrow */
+.account-dropdown .dropdown-toggle::after {
+    display: none !important;
+}
+
+.account-dropdown .dropdown-toggle:hover {
+    color: #FFD700;
+    transform: rotate(10deg);
+}
+
+/* Dropdown menu styling */
+.account-dropdown .dropdown-menu {
+    background: white;
+    min-width: 250px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    padding: 15px;
+    border: none;
+    overflow: hidden;
+    transform: translateY(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+    left: auto; 
+    right: 0; /* Align to the left of the dropdown */
+}
+
+/* Show dropdown on hover */
+.account-dropdown:hover .dropdown-menu {
+    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Dropdown items */
+.account-dropdown .dropdown-item {
+    padding: 12px;
+    border-radius: 8px;
+    transition: background 0.3s ease-in-out;
+}
+
+.account-dropdown .dropdown-item:hover {
+    background: rgba(0, 169, 224, 0.1);
+    color: #008037 !important;
+}
+
+@keyframes rotateLogo {
+    0% {
+        transform: rotateY(0deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+.logo-rotate {
+    animation: rotateLogo 5s linear infinite;
+    display: block;
+}
+
+
+    </style>
+</head>
+<body>
+{% load static %}
+    <!-- Top Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-top">
+        <div class="container-fluid mt-8">
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logo11-removebg-preview.png' %}" 
+                 alt="Lensora Logo" 
+                 class="img-fluid logo-rotate" 
+                 style="height: 80px; width: auto;">
+            </a>
+            
+            <a class="navbar-brand" href="{% url 'home' %}"><h1>Lensora</h1></a>
+    
+            <!-- Navbar toggle for mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+    
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Search Form -->
+                <form class="d-flex ms-auto" role="search" method="POST" action="{% url 'searchdata' %}">
+                    {% csrf_token %}
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                    <button class="btn btn-outline-light" type="submit">Search</button>
+                </form>
+    
+                <!-- Account Dropdown -->
+                <div class="dropdown account-dropdown">
+                    <a class="dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        {% if user.is_authenticated %}
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'orders' %}">My Orders</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Log Out</a></li>
+                        {% else %}
+                            <li><a class="dropdown-item" href="{% url 'login' %}">Sign In</a></li>
+                            <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+                        {% endif %}
+                        {% if user.is_authenticated and user.is_superuser %}
+                            <li><a class="dropdown-item" href="{% url 'addproduct' %}">Add Product</a></li>
+                            <li><a class="dropdown-item" href="">Update Product</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+    
+                <!-- Cart Icon -->
+                <a href="{% url 'viewcart' %}" class="cart-icon">
+                    <i class="bi bi-cart4"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Category Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-main">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarScroll">
+                <ul class="navbar-nav mx-auto">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a id="# eyeglasses.html" class="nav-link" href="{% url 'eyeglass' %}">EYE GLASSES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'power_glass' %}">POWER GLASSES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'sun_glass'  %}">SUN GLASSES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'computer_glass' %}">COMPUTER GLASSES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact_lens' %}">CONTACT LENSES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'accessories' %}">ACCESSORIES</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT US</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+                    </ul>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

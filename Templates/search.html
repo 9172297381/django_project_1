@@ -1,0 +1,147 @@
+{% extends "base.html" %}
+{% load static %}
+{% block 'main' %}
+
+<style>
+    /* General Styles */
+    body {
+        background-color: #f4f4f4;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    .container {
+        max-width: 1200px;
+    }
+
+    /* Title Section */
+    .title-section {
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    .title-section h1 {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: #333;
+    }
+
+    .title-section h6 {
+        font-size: 1.2rem;
+        color: #777;
+    }
+
+    /* Product Grid */
+    .product-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+    }
+
+    /* Product Card */
+    .product-card {
+        background: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+        padding: 15px;
+    }
+
+    .product-card:hover {
+        transform: scale(1.05);
+    }
+
+    .product-card img {
+        width: 100%;
+        height: 220px;
+        object-fit: contain;
+        background: #f8f8f8;
+        border-radius: 10px;
+        padding: 10px;
+    }
+
+    /* Product Details */
+    .product-info {
+        padding: 15px;
+        text-align: center;
+    }
+
+    .product-info h6 {
+        font-size: 1.2rem;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8px;
+    }
+
+    .product-price {
+        font-size: 1.3rem;
+        font-weight: bold;
+        color: #17c1a3;
+        margin-bottom: 10px;
+    }
+
+    .product-meta {
+        font-size: 0.9rem;
+        color: #666;
+    }
+
+    /* Buttons */
+    .btn-primary-custom {
+        background: #17c1a3;
+        border: none;
+        padding: 10px 15px;
+        font-size: 1rem;
+        font-weight: 600;
+        width: 100%;
+        border-radius: 8px;
+        transition: background 0.3s ease-in-out;
+    }
+
+    .btn-primary-custom:hover {
+        background: #13937e;
+    }
+
+    /* Empty State */
+    .empty-state {
+        text-align: center;
+        padding: 50px 20px;
+        color: #777;
+        font-size: 1.2rem;
+    }
+
+    
+</style>
+
+<!-- Title Section -->
+<div class="title-section">
+    <h1>Search Results</h1>
+    <h6>Explore our premium collection of eyewear.</h6>
+</div>
+
+<!-- Product Listing -->
+<div class="container">
+    <div class="product-grid">
+        {% for prod in result %}
+        <div class="product-card">
+            <img src="{{ prod.productImage.url }}" alt="{{ prod.productName }}">
+            <div class="product-info">
+                <h6>{{ prod.productName }}</h6>
+                <p class="product-price">$ {{ prod.productPrice }}/-</p>
+                <p class="product-meta">Inclusive of all taxes</p>
+                <a href="{% url 'viewproduct' prod.id %}" class="btn btn-primary-custom">View Product</a>
+                {% if user.is_authenticated and user.is_superuser %}
+                <a href="{% url 'updateproduct' prod.id %}" class="btn btn-primary-custom mt-2">Update</a>
+                <a href="{% url 'deleteproduct' prod.id %}" class="btn btn-primary-custom mt-2">Delete</a>
+                {% endif %}
+            </div>
+        </div>
+        {% empty %}
+        <div class="empty-state">
+            <p>No products found.</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock 'main' %}

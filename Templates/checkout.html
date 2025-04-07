@@ -1,0 +1,305 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block 'main' %}
+
+<style>
+
+    /* Style for the main heading */
+h2.text-center {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #007bff; /* Premium blue shade */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+h2.text-center::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: #007bff;
+    display: block;
+    margin: 8px auto 0;
+    border-radius: 2px;
+}
+
+/* General Checkout Page Styling */
+body {
+    background-color: #f8f9fa; /* Light gray background */
+    font-family: 'Poppins', sans-serif;
+}
+
+.card {
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: 600;
+    border-radius: 12px 12px 0 0;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+/* Style for payment button */
+.btn-success {
+    background: linear-gradient(135deg, #28a745, #218838);
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-success:hover {
+    background: linear-gradient(135deg, #218838, #1e7e34);
+    transform: scale(1.05);
+}
+
+/* Styling input fields */
+.form-control {
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    h2.text-center {
+        font-size: 1.8rem;
+    }
+}
+
+/* Payment Section Styling */
+.payment-container {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Payment Heading */
+.payment-container h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #007bff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    position: relative;
+    display: inline-block;
+}
+
+.payment-container h5::after {
+    content: "";
+    width: 50px;
+    height: 3px;
+    background: #007bff;
+    display: block;
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+/* PayPal Button Styling */
+.paypal-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #ffc439, #ffad00);
+    color: #333;
+    font-weight: bold;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.paypal-button:hover {
+    background: linear-gradient(135deg, #ffad00, #ff8c00);
+    transform: scale(1.05);
+    color: #000;
+}
+
+/* Order Summary Card */
+.order-summary {
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h5 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343a40;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+.order-summary h5::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background: #343a40;
+    display: block;
+    margin: 5px auto 0;
+    border-radius: 2px;
+}
+
+/* Product Item Styling */
+.product-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.product-item:last-child {
+    border-bottom: none;
+}
+
+.product-image {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    object-fit: cover;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.product-details {
+    flex-grow: 1;
+    padding-left: 15px;
+}
+
+.product-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.product-qty {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.product-price {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #28a745;
+}
+
+</style>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Checkout</h2>
+
+    <div class="row">
+        <!-- ✅ Left Section - Address & Order Summary -->
+        <div class="col-md-7">
+            <!-- Address Section -->
+            <div class="card shadow-sm mb-3">
+                <div class="card-header bg-primary text-white d-flex justify-content-between">
+                    <h5 class="mb-0">Delivery Address</h5>
+                    <button class="btn btn-light btn-sm" id="editAddressBtn"><i class="fas fa-edit"></i> Edit</button>
+                </div>
+                <div class="card-body">
+                    <form id="addressForm" method="POST" action="{% url 'update_address' %}">
+                        {% csrf_token %}
+                        <p><strong>Name:</strong> 
+                            <input type="text" name="custname" class="form-control" value="{{ customer.custname }}" required>
+                        </p>
+                        
+                        <p><strong>Email:</strong>
+                            <input type="email" name="custEmail" class="form-control" value="{{ customer.custEmail }}" required>
+                            {% if form.custEmail.errors %}
+                                <small class="text-danger">{{ form.custEmail.errors.0 }}</small>
+                            {% endif %}
+                        </p>
+                        
+                        <p><strong>Phone:</strong> 
+                            <input type="text" name="custcontact" class="form-control" value="{{ customer.custcontact }}" required>
+                        </p>
+                        
+                        <p><strong>Address:</strong> 
+                            <textarea name="custAddress" class="form-control" rows="2" required>{{ customer.custAddress }}</textarea>
+                        </p>
+                        
+                        <p><strong>Pincode:</strong>
+                            <input type="text" name="pincode" class="form-control" value="{{ customer.pincode }}" required pattern="^\d{6}$">
+                            {% if form.pincode.errors %}
+                                <small class="text-danger">{{ form.pincode.errors.0 }}</small>
+                            {% endif %}
+                        </p>
+                                               
+                        <button type="submit" class="btn btn-success btn-sm d-none mt-2" id="saveAddressBtn">
+                            <i class="fas fa-save"></i> Save
+                        </button>
+                    </form>                    
+                </div>
+            </div>
+
+            <!-- Order Summary -->
+            <div class="card shadow-sm">
+                <div class="card-header bg-secondary text-white">
+                    <h5 class="mb-0">Order Summary</h5>
+                </div>
+                <div class="card-body">
+                    {% for item in cart_items %}
+                        <div class="d-flex justify-content-between align-items-center mb-2">
+                            <img src="{{ item.pid.productImage.url }}" class="img-thumbnail" width="60">
+                            <div>
+                                <p class="mb-0"><strong>{{ item.pid.productName }}</strong></p>
+                                <small>Qty: {{ item.qty }}</small>
+                            </div>
+                            <p class="mb-0">${{ item.pid.productPrice|floatformat:2 }}</p>
+                        </div>
+                        <hr>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- ✅ Right Section - Payment Summary -->
+        <div class="col-md-5">
+            <div class="card shadow-sm">
+                <div class="card-body text-center">
+                    <h4 class="fw-bold">Total: ${{ total_amount }}</h4>
+                    <h5>Delivery: ${{ delivery_charge }}</h5>
+                    <h3 class="fw-bold text-success">Grand Total: ${{ grand_total }}</h3>
+                    <hr>
+                    <h5 class="mb-3">Proceed with Payment</h5>
+                    {{ paypalpayment.render }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ JavaScript for Editable Address -->
+<script>
+    document.getElementById("editAddressBtn").addEventListener("click", function() {
+        let inputs = document.querySelectorAll("#addressForm input, #addressForm textarea");
+        inputs.forEach(input => input.removeAttribute("readonly"));
+        document.getElementById("saveAddressBtn").classList.remove("d-none");
+    });
+</script>
+
+{% endblock 'main' %}
