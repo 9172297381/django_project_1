@@ -98,6 +98,17 @@
                 height: 350px;
             }
         }
+
+.site-footer {
+  width: 100%;
+  background-color: #333; /* or any color */
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  position: relative; /* or fixed if you want it at the bottom always */
+  bottom: 0;
+}
+
 </style>
 {% extends "base.html" %}
 {% load static %}
@@ -169,10 +180,10 @@
         <li class="nav-item" role="presentation">
             <button class="nav-link fw-bold text-muted" id="women-tab" data-bs-toggle="tab" data-bs-target="#women" type="button" role="tab">WOMEN</button>
         </li>
-        <!-- <li class="nav-item" role="presentation">
+        <li class="nav-item" role="presentation">
             <button class="nav-link fw-bold text-muted" id="kids-tab" data-bs-toggle="tab" data-bs-target="#kids" type="button" role="tab">KIDS</button>
         </li>
-    </ul> -->
+    </ul>
     
     <div class="tab-content mt-4" id="categoryTabContent">
         <!-- Men Category -->
@@ -259,7 +270,7 @@
             </div>
         </div>
 
-        <!-- Kids Category
+        Kids Category
         <div class="tab-pane fade" id="kids" role="tabpanel">
             <div class="row text-center">
                 <div class="col-md-2 col-6">
@@ -277,7 +288,7 @@
             </div>
         </div>
     </div>
-</div> -->
+</div>
 
 
 <div class="container my-5">
