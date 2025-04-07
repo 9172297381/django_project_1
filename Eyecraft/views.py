@@ -130,6 +130,29 @@ def contact_lens_view(request):
     return render(request, "contact_lens.html", context)
 
 
+def reading_glass_view(request):
+    rim_type = request.GET.get("rim_type")  # Get selected rim type from URL
+
+    # Filter products that belong only to the Reading Glasses category
+    products = LensProduct.objects.filter(
+        is_deleted=False,
+        productCategory=LensProduct.CategoryChoices.READING_GLASSES
+    )
+
+    # Apply rim type filter if selected
+    if rim_type:
+        products = products.filter(productRimType=rim_type)
+
+    context = {
+        "products": products,
+        "rim_types": LensProduct.RimTypeChoices.choices,
+        "selected_rim": rim_type,
+    }
+
+    return render(request, "reading_glass.html", context)
+
+
+
 def accessories_view(request):
     rim_type = request.GET.get("rim_type")  # Get selected rim type from URL
 
@@ -171,6 +194,45 @@ def computer_glass_view(request):
     }
 
     return render(request, "computer_glasses.html", context)
+
+def kids_eye_glasses(request):
+    rim_type = request.GET.get("rim_type")
+
+    products = LensProduct.objects.filter(
+        is_deleted=False,
+        productCategory=LensProduct.CategoryChoices.K_EYE_GLASSES
+    )
+
+    if rim_type:
+        products = products.filter(productRimType=rim_type)
+
+    context = {
+        "products": products,
+        "rim_types": LensProduct.RimTypeChoices.choices,
+        "selected_rim": rim_type,
+    }
+
+    return render(request, "kids_eye_glasses.html", context)
+
+
+def kids_sun_glasses(request):
+    rim_type = request.GET.get("rim_type")
+
+    products = LensProduct.objects.filter(
+        is_deleted=False,
+        productCategory=LensProduct.CategoryChoices.k_SUN_GLASSES
+    )
+
+    if rim_type:
+        products = products.filter(productRimType=rim_type)
+
+    context = {
+        "products": products,
+        "rim_types": LensProduct.RimTypeChoices.choices,
+        "selected_rim": rim_type,
+    }
+
+    return render(request, "kids_sun_glasses.html", context)
 
 
 # def power_glass_view(request):

@@ -142,14 +142,14 @@
 <!-- Hero Section -->
 <div class="carousel-inner">
     <div class="carousel-item active">
-        <img src="{% static 'images/corosalflip.webp' %}" class="d-block w-100" alt="Slide 1" height="500px">
+        <img src="{% static 'images/featured-sunglass-accessories.jpg' %}" class="d-block w-100" alt="Slide 1" height="500px">
     </div>
 </div>
 
 <!-- Title Section -->
 <div class="title-section">
-    <h1>Sunglasses</h1>
-    <h6>Eyeglasses that blend style and comfort for every face.</h6>
+    <h1>Accessories</h1>
+    <!-- <h6>Eyeglasses that blend style and comfort for every face.</h6> -->
 </div>
 
 <!-- Main Content Section -->
@@ -158,10 +158,10 @@
         {% for prod in products %}
         <div class="card product-card shadow-sm border-0 rounded-3">
             <div class="position-relative">
-                <span class="bestseller-badge">BESTSELLER</span>
+                <!-- <span class="bestseller-badge">BESTSELLER</span> -->
                 <img src="{{ prod.productImage.url }}" class="card-img-top p-2" alt="{{ prod.productName }}">
                 <span class="wishlist-icon">
-                    <i class="bi bi-heart"></i>
+                    <!-- <i class="bi bi-heart"></i> -->
                 </span>
             </div>
             <div class="card-body text-center">

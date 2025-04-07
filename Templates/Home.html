@@ -208,7 +208,7 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-6">
-                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'reading_glass' %}" class="text-decoration-none text-dark">
                         <img src="{% static 'images/reading.webp' %}" class="img-fluid rounded-circle shadow-sm">
                         <p class="fw-bold mt-2">Reading Glasses</p>
                     </a>
@@ -250,13 +250,13 @@
                     </a>
                 </div>
                 <div class="col-md-2 col-6">
-                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'reading_glass' %}" class="text-decoration-none text-dark">
                         <img src="{% static 'images/women_reading_glasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
                         <p class="fw-bold mt-2">Reading Glasses</p>
                     </a>
                 </div>
                 <div class="col-md-2 col-6">
-                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'contact_lens' %}" class="text-decoration-none text-dark">
                         <img src="{% static 'images/women_contact_lenses.webp' %}" class="img-fluid rounded-circle shadow-sm">
                         <p class="fw-bold mt-2">Contact Lenses</p>
                     </a>
@@ -274,13 +274,13 @@
         <div class="tab-pane fade" id="kids" role="tabpanel">
             <div class="row text-center">
                 <div class="col-md-2 col-6">
-                    <a href="{% url 'eyeglass' %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'kids_eye_glasses' %}" class="text-decoration-none text-dark">
                         <img src="{% static 'images/kids_eyeglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
                         <p class="fw-bold mt-2">Eyeglasses</p>
                     </a>
                 </div>
                 <div class="col-md-2 col-6">
-                    <a href="{% url 'sun_glass' %}" class="text-decoration-none text-dark">
+                    <a href="{% url 'kids_sun_glasses' %}" class="text-decoration-none text-dark">
                         <img src="{% static 'images/kids_sunglasses.webp' %}" class="img-fluid rounded-circle shadow-sm">
                         <p class="fw-bold mt-2">Sunglasses</p>
                     </a>
@@ -320,46 +320,74 @@
     <h3 class="text-center">Curated Collections</h3>
     <div class="card-carousel-container">
         <div class="card-carousel">
-            <div class="card">
-                <img src="{% static 'images/card1.webp' %}" alt="Computer Glasses">
-                <div class="card-body"><h5>Computer Glasses</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card2.webp' %}" alt="Whiplash">
-                <div class="card-body"><h5>Whiplash</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card3.webp' %}" alt="Glow Up">
-                <div class="card-body"><h5>Glow Up</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card11.webp' %}" alt="Swimming Glasses">
-                <div class="card-body"><h5>Swimming Glasses</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card5.webp' %}" alt="Deadpool & Wolverine">
-                <div class="card-body"><h5>Deadpool & Wolverine</h5></div>
-            </div>
-            
-            <div class="card">
-                <img src="{% static 'images/card6.webp' %}" alt="Computer Glasses">
-                <div class="card-body"><h5>Computer Glasses</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card7.webp' %}" alt="Whiplash">
-                <div class="card-body"><h5>Whiplash</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card8.webp' %}" alt="Glow Up">
-                <div class="card-body"><h5>Glow Up</h5></div>
-            </div>
-            <div class="card">
-                <img src="{% static 'images/card4.jpg' %}" alt="Computer Glasses">
-                <div class="card-body"><h5>Computer Glasses</h5></div>
-            </div>
+
+            <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card1.webp' %}" alt="Computer Glasses">
+                    <div class="card-body"><h5>Computer Glasses</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'sun_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card2.webp' %}" alt="Whiplash">
+                    <div class="card-body"><h5>Whiplash</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'sun_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card3.webp' %}" alt="Glow Up">
+                    <div class="card-body"><h5>Glow Up</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'accessories' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card11.webp' %}" alt="Swimming Glasses">
+                    <div class="card-body"><h5>Swimming Glasses</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'accessories' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card5.webp' %}" alt="Deadpool & Wolverine">
+                    <div class="card-body"><h5>Deadpool & Wolverine</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card6.webp' %}" alt="Computer Glasses">
+                    <div class="card-body"><h5>Computer Glasses</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card7.webp' %}" alt="Whiplash">
+                    <div class="card-body"><h5>Whiplash</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card8.webp' %}" alt="Glow Up">
+                    <div class="card-body"><h5>Glow Up</h5></div>
+                </div>
+            </a>
+
+            <a href="{% url 'computer_glass' %}" class="text-decoration-none text-dark">
+                <div class="card">
+                    <img src="{% static 'images/card4.jpg' %}" alt="Computer Glasses">
+                    <div class="card-body"><h5>Computer Glasses</h5></div>
+                </div>
+            </a>
+
         </div>
     </div>
 </div>
+
 
 
   {% endblock 'main' %}

@@ -44,6 +44,10 @@ urlpatterns = [
     path('forget-password/', views.forgetpassword, name='forget-password'),
     path('verifyotp/',views.verifyotp,name='verifyotp'),
     path('resetpassword/',views.resetpassword,name='resetpassword'),
+    path('reading-glasses/', views.reading_glass_view, name='reading_glass'),
+    path('kids-eye-glasses/', views.kids_eye_glasses, name='kids_eye_glasses'),
+    path('kids-sun-glasses/', views.kids_sun_glasses, name='kids_sun_glasses'),
+
     # path('paypal-payment/', views.paypal_payment, name='paypal_payment'),
        
 ]

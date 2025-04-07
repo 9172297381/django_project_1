@@ -5,12 +5,12 @@
             <div class="col-md-2">
                 <h6 class="text-info text-uppercase">Eyeglasses</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Men</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Women</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Kids</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Fastrack</a></li>
+                    <li><a href="{% url 'eyeglass' %}" class="text-white text-decoration-none">Men</a></li>
+                    <li><a href="{% url 'eyeglass' %}" class="text-white text-decoration-none">Women</a></li>
+                    <li><a href="{% url 'eyeglass' %}" class="text-white text-decoration-none">Kids</a></li>
+                    <!-- <li><a href="#" class="text-white text-decoration-none">Fastrack</a></li>
                     <li><a href="#" class="text-white text-decoration-none">Rimless</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Titan</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Titan</a></li> -->
                 </ul>
             </div>
 
@@ -18,10 +18,10 @@
             <div class="col-md-2">
                 <h6 class="text-info text-uppercase">Sunglasses</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Men</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Women</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Rimless</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Fastrack</a></li>
+                    <li><a href="{% url 'sun_glass'  %}" class="text-white text-decoration-none">Men</a></li>
+                    <li><a href="{% url 'sun_glass'  %}" class="text-white text-decoration-none">Women</a></li>
+                    <!-- <li><a href="#" class="text-white text-decoration-none">Rimless</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Fastrack</a></li> -->
                 </ul>
             </div>
 
@@ -29,8 +29,8 @@
             <div class="col-md-2">
                 <h6 class="text-info text-uppercase">Contact Lenses</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Bausch & Lomb</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Johnson & Johnson</a></li>
+                    <li><a href="{% url 'contact_lens' %}" class="text-white text-decoration-none">Bausch & Lomb</a></li>
+                    <li><a href="{% url 'contact_lens' %}" class="text-white text-decoration-none">Johnson & Johnson</a></li>
                 </ul>
             </div>
 
@@ -38,11 +38,11 @@
             <div class="col-md-2">
                 <h6 class="text-info text-uppercase">Account</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">Our Policies</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">My Account</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Create an Account</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Tata Neu Pass</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Titan Encircle</a></li>
+                    <!-- <li><a href="#" class="text-white text-decoration-none">Our Policies</a></li> -->
+                    <!-- <li><a href="#" class="text-white text-decoration-none">My Account</a></li> -->
+                    <li><a href="{% url 'register' %}" class="text-white text-decoration-none">Create an Account</a></li>
+                    <!-- <li><a href="#" class="text-white text-decoration-none">Tata Neu Pass</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Titan Encircle</a></li> -->
                 </ul>
             </div>
 
@@ -50,16 +50,16 @@
             <div class="col-md-2">
                 <h6 class="text-info text-uppercase">About Lenskart</h6>
                 <ul class="list-unstyled">
-                    <li><a href="#" class="text-white text-decoration-none">About Us</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Blog</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
-                    <li><a href="#" class="text-white text-decoration-none">Cyber Security Policy</a></li>
+                    <li><a href="{% url 'about' %}" class="text-white text-decoration-none">About Us</a></li>
+                    <!-- <li><a href="#" class="text-white text-decoration-none">Blog</a></li> -->
+                    <li><a href="{% url 'contact' %}" class="text-white text-decoration-none">Contact Us</a></li>
+                    <!-- <li><a href="#" class="text-white text-decoration-none">Terms & Conditions</a></li>
+                    <li><a href="#" class="text-white text-decoration-none">Cyber Security Policy</a></li> -->
                 </ul>
             </div>
 
             <!-- Useful Links -->
-            <div class="col-md-2">
+            <!-- <div class="col-md-2">
                 <h6 class="text-info text-uppercase">Useful Links</h6>
                 <ul class="list-unstyled">
                     <li><a href="#" class="text-white text-decoration-none">Store Locations</a></li>
@@ -69,17 +69,17 @@
                     <li><a href="#" class="text-white text-decoration-none">Exercise Your Rights</a></li>
                     <li><a href="#" class="text-white text-decoration-none">Glossary</a></li>
                 </ul>
-            </div>
+            </div> -->
         </div>
 
-        <hr class="border-secondary my-4">
+        <!-- <hr class="border-secondary my-4">
 
         <!-- Download App -->
-        <div class="text-center">
+        <!-- <div class="text-center">
             <h6 class="fw-bold text-info">Download Lenskart App</h6>
             <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" width="120"></a>
             <a href="#"><img src="https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg" width="120"></a>
-        </div>
+        </div> --> 
 
         <hr class="border-secondary my-4">
 
@@ -90,13 +90,13 @@
                 <p>Email: cs@lensora.com</p>
                 <p>Phone: 917229731</p>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <h6 class="fw-bold text-info">Follow Us</h6>
                 <a href="#" class="text-light me-3"><i class="fab fa-instagram fa-lg"></i></a>
                 <a href="#" class="text-light me-3"><i class="fab fa-youtube fa-lg"></i></a>
                 <a href="#" class="text-light me-3"><i class="fab fa-x-twitter fa-lg"></i></a>
             </div>
-        </div>
+        </div> -->
 
         <hr class="border-secondary my-3">
 
